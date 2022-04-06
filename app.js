@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // conneting to database
-mongoose.connect('mongodb://localhost:27017/ReadX', {useNewUrlParser: true}, () =>
+mongoose.connect(process.env.DB, {useNewUrlParser: true}, () =>
  {
      console.log('connected to db');
  });
@@ -37,14 +37,14 @@ app.use(passport.session());
 
 passport.serializeUser(function(user, done) {
     // console.log(user);
-    done(null, user.id); 
+    done(null, user._id); 
    // where is this user.id going? Are we supposed to access this anywhere?
 });
 
 // used to deserialize the user
 passport.deserializeUser(function(id, done) {
     User.findById(id, (err, user) => {
-        done(err, user);
+        done(err, user._id);
     })
 });
 // --------------------------------------------------------------------------------------
@@ -57,11 +57,14 @@ passport.deserializeUser(function(id, done) {
 const Oauth = require('./routes/Oauth');
 app.use('/api/users', Oauth);
 
+// using auth register login
+const auth = require('./routes/auth');
+app.use('/api/users', auth);
 
 
 
 app.get("/", (req,res) => {
-    console.log(req.user);
+    console.log(req.user, req.session);
     res.send("success");
 })
 
