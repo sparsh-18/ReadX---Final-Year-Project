@@ -7,19 +7,13 @@ const Home = (props)=>{
 
     const [ allexchangePost , setallexchangePost ]=useState([]);
 
-<<<<<<< HEAD
     const [ exchangePost , setExchangePost ]=useState([]);
-=======
     // const [ exchangePost , setExchangePost ]=useState([]);
->>>>>>> 5f922603492b4ee9eef3bea89f5d406f5466d33a
     const [nameforum,setnameforum] = useState("");
     const [authorforum, setauthorforum] = useState("");
     const [latforum, setlat] = useState("");
     const [lonforum, setlon] = useState("");
-<<<<<<< HEAD
-=======
     const [inputRange, setInputRange] = useState(1);
->>>>>>> 5f922603492b4ee9eef3bea89f5d406f5466d33a
 
     useEffect(()=>{
         const fetchUrl = async ()=>{
@@ -30,8 +24,6 @@ const Home = (props)=>{
         fetchUrl();
     },[]);
 
-<<<<<<< HEAD
-=======
     const inputRangeHander = async (event)=>{
         setInputRange(event.target.value);
         try {
@@ -43,7 +35,6 @@ const Home = (props)=>{
         }
     }
 
->>>>>>> 5f922603492b4ee9eef3bea89f5d406f5466d33a
 //=====================================================================================================================
     async function getpos() {
           //  console.log("here");
@@ -61,11 +52,7 @@ const Home = (props)=>{
     const authorchange = async (event)=>{
         setauthorforum(event.target.value);
     }
-<<<<<<< HEAD
-  
-=======
     // console.log("pro : "+props);
->>>>>>> 5f922603492b4ee9eef3bea89f5d406f5466d33a
     const addexchangeforum = async (event)=>{
         event.preventDefault();
         if(props.UserId != ""){
@@ -79,11 +66,7 @@ const Home = (props)=>{
                           "user_posted": props.UserId,
                           "latitude": latforum,
                           "longitude": lonforum,
-<<<<<<< HEAD
-                          "image_name": ""
-=======
                           "image_name": "states2.jpeg"
->>>>>>> 5f922603492b4ee9eef3bea89f5d406f5466d33a
                       },
                       {
                           headers: { 'Content-Type':'application/json'},
@@ -101,11 +84,8 @@ const Home = (props)=>{
             setlat("");
             setlon("");
     
-<<<<<<< HEAD
-=======
         }else{
             alert("Please Login First ..") 
->>>>>>> 5f922603492b4ee9eef3bea89f5d406f5466d33a
         }
     }
 //=========================================================================================================
