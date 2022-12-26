@@ -1,0 +1,154 @@
+auth-token =   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2ZTUxZTFmYjVkNTFjMjg5NDhjOGQiLCJpYXQiOjE2NDk5MzI3NTl9._DkN3Eg22naHbFflhORa2cDhIMa7UzWDJrtops2v5vY
+
+
+
+
+{
+	"book_name":"Novel 1",
+	"author":"author 1",
+	"user_posted": "625d50384e697b8793f57004",
+	"latitude": "25.47119",
+	"longitude": "81.826409",
+	"image_name": "indpstv.jpeg"
+}
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU5NDM0YmQ4M2M3MGI4NTZhMTU0OTQiLCJpYXQiOjE2NTAwMTcwOTl9.vUTZtTaQ42xVDKw0rPJDLNXcWxOiD_SGAaAhlhv7VfE
+
+
+"title":"Where does it come from?",
+"body":"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.",
+"likes":0,
+"user_posted": "6256e51e1fb5d51c28948c8d",
+"user_posted_comment":"6257cd86ad79fd8c55827eb6",
+"commentBody":"Awesome Post !"
+
+
+
+Scanner sc = new Scanner(System.in);
+int status = 1;
+while(status){
+	System.out.println("Choose Any Operation");
+	System.out.println("-/ 1 : Push");
+	System.out.println("-/ 2 : Pop");
+	System.out.println("-/ 3 : Peek");
+	System.out.println("-/ 4 : Contains");
+	System.out.println("-/ 5 : Size");
+	System.out.println("-/ 6 : Center");
+	System.out.println("-/ 7 : Sort");
+	System.out.println("-/ 8 : Reverse");
+	System.out.println("-/ 9 : Print");
+	System.out.println("-/ 10 : Stop");
+	int op = sc.nextInt();
+	if(op==10){
+		status = 0;
+		break;
+	}
+	switch(op){
+		case 1: 
+		    System.out.println("Enter the Item : ");
+			int item = sc.nextInt();
+			st.push(item);
+			break;
+		case 2:
+		 	st.pop();
+			System.out.println("Item are poped.");
+			break;
+		case 3:
+			st.peek();
+			break;
+		case 4:
+			System.out.println("Enter Item : ");
+			int item = sc.nextInt();
+			st.contains(item);
+			break;
+		case 5:
+			st.size();
+			break;
+		case 6:
+			st.middle();
+			break;
+		case 7:
+			st.sort();
+			break;
+		case 8:
+			st.reverse();
+			break;
+		case 9: 
+			st.display();
+			break;
+	}
+}
+
+
+
+try{
+	int op = sc.nextInt();
+	if
+}
+
+
+
+import React,{ useState, useEffect } from "react";
+import axios from "axios";
+import PostCard from "../components/Postcard";
+import "./css/style.css";
+
+const Home = ()=>{
+
+    const [ allexchangePost , setallexchangePost ] = useState([]);
+    const [inputRange, setInputRange] = useState(1);
+
+
+    const inputRangeHander = async (event)=>{
+        setInputRange(event.target.value);
+        try {
+            const { data: res} = await axios.get('http://localhost:8080/api/exchangeposts/25.471190/81.826409/'+ (inputRange*1000));
+            setallexchangePost(res);
+            console.log("range filtered : " +res);
+        } catch (error) {
+            console.log("Load Failed ! "+error);
+        }
+    }
+
+    useEffect(()=>{
+        const fetchUrl = async ()=>{
+            const { data: res} = await axios.get('http://localhost:8080/api/exchangeposts/all');
+            setallexchangePost(res);
+            console.log(res);
+        };
+        fetchUrl();
+    },[]);
+
+
+    return(
+        <>
+            <div className="Home container">
+                <div className="row">
+                <div class="container-xxl menu-nav">
+                    <label for="customRange1" class="form-label">Location range (km): <span id="range_val">{inputRange}</span></label>
+                    <input type="range" class="form-range" min="1" max="50" step="1" id="customRange1" value={inputRange} onChange={inputRangeHander}/>
+                </div>
+                </div>
+                <div className="container cardposted">
+                    <div className="row postCardsection">
+
+                    {
+                        allexchangePost.map(post=>
+                            <PostCard
+                                bookname={post.book_name}
+                                author={post.author}
+                                user={post.user_posted}
+                                imageurl={post.post_img}
+                            />
+                        )
+                    }
+
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default Home;
