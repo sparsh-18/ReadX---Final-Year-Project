@@ -47,7 +47,7 @@ node app.js
 
 ### Register a user
 
-```http
+```
   POST /api/users/register
 ```
 **Body**
@@ -62,7 +62,7 @@ node app.js
 
 ### Login
 
-```http
+```
   GET /api/users/login
 ```
 **Body**
@@ -76,20 +76,20 @@ node app.js
 
 ### Google Login
 
-```http
+```
   GET /api/users/google/login
 ```
 
 ### Get all exchange posts
 
-```http
+```
   GET /api/exchangeposts/all
 ```
 
 
 ### Get one exchange post
 
-```http
+```
   GET /api/exchangeposts/:id
 ```
 
@@ -100,7 +100,7 @@ node app.js
 
 ### Get exchange posts via location
 
-```http
+```
   GET /api/exchangeposts/:latitude/:longitude/:distance
 ```
 
@@ -115,7 +115,7 @@ node app.js
 
 ### Add new exchange post
 
-```http
+```
   GET /api/addnew/exchangepost
 ```
 **Body**
@@ -133,14 +133,14 @@ node app.js
 
 ### Get all discuss posts
 
-```http
+```
   GET /api/discusspost/all
 ```
 
 
 ### Get one discuss post
 
-```http
+```
   GET /api/discusspost/:id
 ```
 
@@ -152,7 +152,7 @@ node app.js
 
 ### Add new discuss post
 
-```http
+```
   POST /api/addnew/discusspost
 ```
 **Body**
@@ -169,7 +169,7 @@ node app.js
 
 ### Add new comment in discuss post
 
-```http
+```
   POST /api/discusspost/commented
 ```
 **Body**
